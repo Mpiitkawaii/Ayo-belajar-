@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Studium Deutsch – Diagnostik C-Test B2</title>
+<style>body{font-family:Arial,sans-serif;margin:0;background:#f7f4ff;color:#24213a}header{background:#6c4cc8;color:#fff;padding:24px;text-align:center}main{max-width:900px;margin:auto;padding:20px}.card{background:#fff;border-radius:18px;padding:20px;margin:15px 0;box-shadow:0 4px 15px #0001}.q{margin:14px 0;line-height:2}input{padding:8px;border:2px solid #ddd;border-radius:8px;width:105px}button{background:#6c4cc8;color:#fff;border:0;border-radius:10px;padding:11px 15px;cursor:pointer;margin:5px 5px 5px 0}.correct{border-color:#35a853!important;background:#eaffef}.wrong{border-color:#d93025!important;background:#fff0f0}.result{margin-top:15px;font-weight:bold}.explain{display:none;margin-top:8px;padding:12px;background:#f1edff;border-radius:10px;font-size:.95em;line-height:1.55}.explain b{color:#5b3ab2}a{color:white}</style></head>
+<body><header><h1>✍️ Diagnostik C-Test B2</h1><p>🇩🇪 Thema 1: Studium und Bildung · 20 Lücken</p><nav><a href="index.html">Home</a> · <a href="vocab.html">Vocab & Quiz</a></nav></header>
+<main><div class="card"><p><b>Petunjuk:</b> Lengkapi bagian kata yang hilang. Kerjakan tanpa kamus/Google agar hasil diagnostik lebih jujur.</p><p>Setelah klik <b>Periksa Jawaban</b>, kamu akan mendapat skor dan <b>penjelasan dalam Bahasa Indonesia untuk setiap nomor</b>.</p></div>
+<div class="card"><h2>Ergänze die Wörter</h2><div id="questions"></div><button onclick="check()">Periksa Jawaban</button><button onclick="location.reload()">Reset</button><div id="result" class="result"></div></div>
+<div id="review" class="card" style="display:none"><h2>📖 Pembahasan</h2><div id="explanations"></div></div></main>
+<script>
+const items=[
+['Verbrei','tung','die Verbreitung','"Verbreitung" berarti penyebaran. Polanya: <b>Verbreitung + Genitiv</b> → „die Verbreitung digitaler Plattformen“.','Kata benda feminin: die Verbreitung.'],
+['Aufen','thalt','der Aufenthalt','"Aufenthalt" berarti tempat/masa seseorang tinggal atau berada. „von ihrem Aufenthalt“ memakai <b>Dativ</b> setelah „von“.','Perhatikan ejaan: Aufenthalt, bukan Aufenhalt.'],
+['Selbstdis','ziplin','die Selbstdisziplin','„Selbstdisziplin“ = disiplin diri. <b>ein hohes Maß an + Dativ</b> → „ein hohes Maß an Selbstdisziplin“.','Kata ini penting untuk konteks belajar mandiri.'],
+['verpas','st','verpasst','„Fristen verpassen“ = melewatkan tenggat. Di sini bentuknya <b>Pasiv Präsens</b>: „Fristen nicht verpasst werden“.','Partizip II dari verpassen adalah verpasst.'],
+['eintei','len','einteilen','„Zeit sinnvoll einteilen“ = mengatur/membagi waktu. <b>einteilen</b> adalah trennbares Verb: „Ich teile meine Zeit ein.“','Dalam infinitif, awalan ein- tetap menyatu.'],
+['Lös','ungen','Lösungen','„eine Lösung für ein Problem entwickeln“ = mengembangkan solusi untuk masalah. „Lösungen“ adalah bentuk jamak.','Singular: die Lösung; Plural: die Lösungen.'],
+['Perspekt','iven','Perspektiven','„unterschiedliche Perspektiven berücksichtigen“ = mempertimbangkan sudut pandang yang berbeda.','Perspektive → Perspektiven dalam bentuk jamak.'],
+['Berufs','leben','Berufsleben','„im Berufsleben“ = dalam kehidupan dunia kerja. „im“ = in dem, jadi Dativ.','Kompositum: Beruf + Leben → Berufsleben.'],
+['arbei','ten','arbeiten','Setelah „müssen“ digunakan <b>Infinitiv</b>: „Viele müssen neben dem Studium arbeiten.“','Modalverb + Infinitiv.'],
+['Berat','ung','Beratung','„Beratung“ = konsultasi/bimbingan. „Beratungsangebote“ juga sering dipakai untuk layanan konsultasi.','Beratung berasal dari beraten.'],
+['Neben','job','Nebenjob','„Nebenjob“ = pekerjaan sampingan. „bei der Suche nach einem Nebenjob“ → „einem“ karena Dativ.','Kata gabungan: neben + Job.'],
+['inform','ieren','informieren','„sich über etwas informieren“ = mencari/mendapatkan informasi tentang sesuatu.','Reflexive Verb + über + Akkusativ.'],
+['bewäl','tigen','bewältigen','„Schwierigkeiten bewältigen“ = mengatasi kesulitan.','Sinonim dekat: meistern, mit etwas klarkommen.'],
+['erschl','ießen','erschließen','„sich erschließen“ = dapat dipahami/disimpulkan dari konteks. Di sini bentuknya: „deren Bedeutung sich ... erschließt“.','Verb: sich erschließen; bukan einfach „schließen“.'],
+['Kon','text','Kontext','„im Kontext“ = dalam konteks. „im“ menunjukkan Dativ: in dem Kontext.','Kontext membantu menentukan makna kata yang belum dikenal.'],
+['verbes','sert','verbessert','Pasif: „das Textverständnis verbessert werden“. Partizip II dari verbessern = verbessert.','Verbessern → verbessert.'],
+['zuverläs','sig','zuverlässig','„zuverlässig“ = dapat dipercaya/andal. „nicht automatisch zuverlässig“ = tidak otomatis dapat dipercaya.','Adjektiv dengan akhiran -ig.'],
+['Quel','len','Quellen','„verschiedene Quellen miteinander vergleichen“ = membandingkan berbagai sumber.','Quelle → Quellen (Plural).'],
+['Den','ken','Denken','„die Fähigkeit zum kritischen Denken“ = kemampuan berpikir kritis. „zum“ = zu dem.','denken → das Denken (Nominalisierung).'],
+['ler','nen','lernen','Setelah „bereit sein, ...“ digunakan <b>zu + Infinitiv</b>: „bereit ... zu lernen und ... zu lernen“.','lernen → ler + nen; bagian yang hilang: nen.']
+];
+const sentences=[
+'Besonders seit der zunehmenden Verbrei___ digitaler Plattformen werden Vorlesungen und Seminare teilweise online angeboten.',
+'Sie können beispielsweise unabhängiger von ihrem Aufen___ lernen und ihre Lernzeit flexibler gestalten.',
+'Gleichzeitig erfordert das digitale Studium jedoch ein hohes Maß an Selbstdis___.',
+'dass wichtige Fristen nicht verpas___ werden.',
+'ihre Zeit sinnvoll einzute___.',
+'gemeinsam Lös___ für komplexe Probleme zu entwickeln',
+'unterschiedliche Perspekt___ zu berücksichtigen.',
+'im Berufs___ von großem Vorteil sein.',
+'Viele müssen neben dem Studium arbei___, um ihren Lebensunterhalt zu finanzieren.',
+'Einige Hochschulen bieten deshalb Berat___ und Unterstützungsangebote an.',
+'Hilfe bei der Suche nach einem Neben___',
+'sich frühzeitig über die verschiedenen Angebote zu inform___.',
+'kann Schwierigkeiten häufig schneller bewäl___.',
+'deren Bedeutung sich nicht immer unmittelbar erschl___.',
+'unbekannte Ausdrücke im Kon___ zu betrachten.',
+'das Textverständnis verbes___ werden.',
+'ist nicht automatisch zuverläs___.',
+'verschiedene Quel___ miteinander zu vergleichen.',
+'Fähigkeit zum kritischen Den___',
+'aus eigenen Fehlern zu ler___'
+];
+const q=document.getElementById('questions');items.forEach((x,i)=>{q.innerHTML+=`<div class="q"><b>${i+1}.</b> ${sentences[i].replace('___',`<input id="a${i}" autocomplete="off" aria-label="Jawaban ${i+1}">`)}</div>`});
+function check(){let score=0,html='';items.forEach((x,i)=>{let el=document.getElementById('a'+i),ans=el.value.trim().toLowerCase(),ok=ans===x[1].toLowerCase();el.className=ok?'correct':'wrong';if(ok)score++;html+=`<div class="explain" style="display:block"><b>${i+1}. ${ok?'✅ Benar':'❌ Perlu diperbaiki'}</b><br>Jawaban: <b>${x[2]}</b><br>${x[3]}<br><small>${x[4]}</small></div>`});document.getElementById('result').innerHTML=`Skor: ${score}/20 — ${score>=17?'Sangat kuat untuk diagnostik B2.':score>=13?'Dasar B2 mulai terlihat; masih ada beberapa area yang perlu diperkuat.':score>=9?'B1+ menuju B2; fokus pada kosakata akademik dan struktur.':'Perkuat fondasi B1/B1+ sebelum mengejar struktur B2.'}`;document.getElementById('review').style.display='block';document.getElementById('explanations').innerHTML=html;document.getElementById('review').scrollIntoView({behavior:'smooth'});}
+</script></body></html>
